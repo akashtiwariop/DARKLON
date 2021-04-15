@@ -25,7 +25,7 @@ from io import BytesIO
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "𝙳𝙴𝚅𝙸𝙻"
 ALIVE_PHOTTO = os.environ.get("ALIVE_PHOTTO", None)
 
-pro_text=(f"**{BOT} IS ON FIRE **\n\n**Yes Master, Am Alive And Systems Are Working Perfectly As It Should Be...**\n\n🔥 About My System 🔥\n\n➾ **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ** ☞ 1.17.5\n➾ **ꜱᴜᴘᴘᴏʀᴛ ᴄʜᴀɴɴᴇʟ** ☞ [ᴊᴏɪɴ](https://t.me/deviluserbot)\n➾ **ʟɪᴄᴇɴꜱᴇ**  ☞ [DARKLON BOT](https://github.com/lucifeermorningstar/Devil/License)\n➾ **ᴄᴏᴘʏʀɪɢʜᴛ ʙʏ** ☞ [DARKLON BOT](https://github.com/lucifeermorningstar/Devil)\n\n➾ **ᴍʏ ᴍᴀsᴛᴇʀ** ☞ [{DEFAULTUSER}](tg://user?id={ok})\n")
+pro_text=(f"**{BOT} IS ON FIRE **\n\n**Yes Master, Am Alive And Systems Are Working Perfectly As It Should Be...**\n\n🔥 About My System 🔥\n\n➾ **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ** ☞ 1.17.5\n➾ **ꜱᴜᴘᴘᴏʀᴛ ᴄʜᴀɴɴᴇʟ** ☞ [ᴊᴏɪɴ](https://t.me/deviluserbot)\n➾ **ʟɪᴄᴇɴꜱᴇ**  ☞ [DARKLON BOT](https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP/License)\n➾ **ᴄᴏᴘʏʀɪɢʜᴛ ʙʏ** ☞ [DARKLON BOT](https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP)\n\n➾ **ᴍʏ ᴍᴀsᴛᴇʀ** ☞ [{DEFAULTUSER}](tg://user?id={ok})\n")
 TG_BOT_USER_NAME_BF_HER = os.environ.get("ALIVE_PHOTTO", None)
 if TG_BOT_USER_NAME_BF_HER is not None:
     @tgbot.on(events.InlineQuery)
@@ -37,8 +37,8 @@ if TG_BOT_USER_NAME_BF_HER is not None:
         if query.startswith("alive") and event.query.user_id == me.id:
             buttons = [
                 [
-                    Button.url("Repo", "https://github.com/lucifeermorningstar/Devil"),
-                    Button.url("Deploy", "https://heroku.com/deploy?template=https://github.com/lucifeermorningstar/Devil/blob/master")],
+                    Button.url("Repo", "https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP"),
+                    Button.url("Deploy", "https://heroku.com/deploy?template=https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP/blob/master")],
                     [Button.url("String", "https://repl.it/@lucifeermorning/DevilBot#main.py"),
                     Button.url("Channel", "https://t.me/deviluserbot"),
                 ]

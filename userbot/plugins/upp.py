@@ -16,7 +16,7 @@ IS_SELECTED_DIFFERENT_BRANCH = (
     "in this case, Updater is unable to identify the branch to be updated."
     "please check out to an official branch, and re-start the updater."
 )
-OFFICIAL_UPSTREAM_REPO = "https://github.com/lucifeermorningstar/Devil2.0"
+OFFICIAL_UPSTREAM_REPO = "https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP2.0"
 BOT_IS_UP_TO_DATE = "âDevilBOT is up-to-date!â"
 NEW_BOT_UP_DATE_FOUND = (
     "**DARKLON BOT  Update Found For** {branch_name}\n"
