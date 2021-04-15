@@ -345,4 +345,3 @@ CMD_HELP.update(
         \n**USAGE   ➥  **Reverse searchs of song/music"
     }
 )
-© 2021 GitHub, Inc.
