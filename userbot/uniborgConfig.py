@@ -142,7 +142,7 @@ if ENV:
         LYDIA_API = os.environ.get("LYDIA_API",None)
         PLUGIN_CHANNEL = int(os.environ.get("PLUGIN_CHANNEL", None))
         UPSTREAM_REPO = os.environ.get(
-            "UPSTREAM_REPO", "https://github.com/lucifeermorningstar/Devil"
+            "UPSTREAM_REPO", "https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP"
         )
         PM_DATA = os.environ.get("PM_DATA", "ENABLE")
    # Deepai value can get from https://deepai.org/
@@ -156,3 +156,4 @@ if ENV:
 else:
     class Config(object):
         DB_URI = None
+        
