@@ -10,7 +10,7 @@ from userbot.utils import edit_or_reply as eor
 
 DELETE_TIMEOUT = 3
 thumb_image_path = "./Resources/IMG_20210304_093322_763.jpg"
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Devil BOT"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "HACKEROP BOT"
 
 
 @bot.on(admin_cmd(pattern=r"send (?P<shortname>\w+)", outgoing=True))
@@ -89,10 +89,10 @@ async def unload(event):
     shortname = event.pattern_match["shortname"]
     try:
         remove_plugin(shortname)
-        qwe = await eor(event, f"Devil BOT Has Successfully unloaded {shortname}")
+        qwe = await eor(event, f"HACKEROP BOT Has Successfully unloaded {shortname}")
     except Exception as e:
         await qwe.edit(
-            "Devil BOT has Successfully unloaded {shortname}\n{}".format(shortname, str(e))
+            "HACKEROP BOT has Successfully unloaded {shortname}\n{}".format(shortname, str(e))
         )
 
 
@@ -111,5 +111,5 @@ async def load(event):
         qwe = await eor(event, f"Successfully loaded {shortname}")
     except Exception as e:
         await qwe.edit(
-            f"devil BOT could not load {shortname} because of the following error.\n{str(e)}"
+            f"HACKEROP BOT could not load {shortname} because of the following error.\n{str(e)}"
         )
