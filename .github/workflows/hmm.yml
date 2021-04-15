@@ -19,7 +19,7 @@ jobs:
 
         with:
 
-          find: "HACKEROP"
+          find: "DEVIL"
 
           replace: "DARKLON"
 
