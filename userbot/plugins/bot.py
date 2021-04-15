@@ -25,7 +25,7 @@ from io import BytesIO
 DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "𝙳𝙴𝚅𝙸𝙻"
 ALIVE_PHOTTO = os.environ.get("ALIVE_PHOTTO", None)
 
-pro_text=(f"**{BOT} IS ON FIRE **\n\n**Yes Master, Am Alive And Systems Are Working Perfectly As It Should Be...**\n\n🔥 About My System 🔥\n\n➾ **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ** ☞ 1.17.5\n➾ **ꜱᴜᴘᴘᴏʀᴛ ᴄʜᴀɴɴᴇʟ** ☞ [ᴊᴏɪɴ](https://t.me/deviluserbot)\n➾ **ʟɪᴄᴇɴꜱᴇ**  ☞ [DEVIL BOT](https://github.com/lucifeermorningstar/Devil/License)\n➾ **ᴄᴏᴘʏʀɪɢʜᴛ ʙʏ** ☞ [DEVIL BOT](https://github.com/lucifeermorningstar/Devil)\n\n➾ **ᴍʏ ᴍᴀsᴛᴇʀ** ☞ [{DEFAULTUSER}](tg://user?id={ok})\n")
+pro_text=(f"**{BOT} IS ON FIRE **\n\n**Yes Master, Am Alive And Systems Are Working Perfectly As It Should Be...**\n\n🔥 About My System 🔥\n\n➾ **ᴛᴇʟᴇᴛʜᴏɴ ᴠᴇʀꜱɪᴏɴ** ☞ 1.17.5\n➾ **ꜱᴜᴘᴘᴏʀᴛ ᴄʜᴀɴɴᴇʟ** ☞ [ᴊᴏɪɴ](https://t.me/deviluserbot)\n➾ **ʟɪᴄᴇɴꜱᴇ**  ☞ [DARKLON BOT](https://github.com/lucifeermorningstar/Devil/License)\n➾ **ᴄᴏᴘʏʀɪɢʜᴛ ʙʏ** ☞ [DARKLON BOT](https://github.com/lucifeermorningstar/Devil)\n\n➾ **ᴍʏ ᴍᴀsᴛᴇʀ** ☞ [{DEFAULTUSER}](tg://user?id={ok})\n")
 TG_BOT_USER_NAME_BF_HER = os.environ.get("ALIVE_PHOTTO", None)
 if TG_BOT_USER_NAME_BF_HER is not None:
     @tgbot.on(events.InlineQuery)
@@ -53,14 +53,14 @@ if TG_BOT_USER_NAME_BF_HER is not None:
             elif ALIVE_PHOTTO:
                 result = builder.document(
                     ALIVE_PHOTTO,
-                    title="DEVIL BOT",
+                    title="DARKLON BOT",
                     text=pro_text,
                     buttons=buttons,
                     link_preview=False,
                 )
             else:
                 result = builder.article(
-                    title="DEVIL BOT",
+                    title="DARKLON BOT",
                     text=pro_text,
                     buttons=buttons,
                     link_preview=False,

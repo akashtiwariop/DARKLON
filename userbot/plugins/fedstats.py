@@ -7,14 +7,14 @@ from userbot import bot
 from userbot.utils import admin_cmd
 
 bot = "@MissRose_bot"
-DEVIL = NAME
+DARKLON = NAME
 
 
 @borg.on(admin_cmd("fstat ?(.*)"))
 async def _(event):
     if event.fwd_from:
         return
-    ok = await event.edit(f"**CHECKING BY {DEVIL}**...")
+    ok = await event.edit(f"**CHECKING BY {DARKLON}**...")
     if event.reply_to_msg_id:
         previous_message = await event.get_reply_message()
         sysarg = str(previous_message.sender_id)
@@ -41,7 +41,7 @@ async def _(event):
                     await borg.send_file(
                         event.chat_id,
                         audio,
-                        caption=f"List of feds {user} has been banned in.\n\nFSTATS CHECKED BY {DEVIL} 🔥\n\nCollected by 𝘿𝙀𝙑𝙄𝙇  ฿ø₮.",
+                        caption=f"List of feds {user} has been banned in.\n\nFSTATS CHECKED BY {DARKLON} 🔥\n\nCollected by 𝘿𝙀𝙑𝙄𝙇  ฿ø₮.",
                     )
                 else:
                     await borg.send_message(event.chat_id, audio.text)
@@ -63,7 +63,7 @@ async def _(event):
             await conv.get_response()
             await conv.send_message("/fedinfo " + sysarg)
             audio = await conv.get_response()
-            await ok.edit(audio.text + "\n\nFedInfo Excracted by DEVILBOT")
+            await ok.edit(audio.text + "\n\nFedInfo Excracted by DARKLONBOT")
         except YouBlockedUserError:
             await ok.edit("**Error**\n `Unblock` @MissRose_Bot `and try again!")
 

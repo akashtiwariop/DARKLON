@@ -1,4 +1,4 @@
-# Made by @LEGENDX22 FOR DEVIL BOT
+# Made by @LEGENDX22 FOR DARKLON BOT
 import asyncio
 import io
 

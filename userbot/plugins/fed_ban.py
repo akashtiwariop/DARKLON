@@ -35,12 +35,12 @@ async def _(event):
                 REASON = arg[2]
             else:
                 FBAN = arg[1]
-                REASON = " #DEVILFBANNED 🔥 "
+                REASON = " #DARKLONFBANNED 🔥 "
         else:
             FBAN = previous_message.sender_id
             REASON = event.text.split(" ", maxsplit=1)[1]
             if REASON.strip() == "":
-                REASON = " #DEVILFBANNED 🔥"
+                REASON = " #DARKLONFBANNED 🔥"
     else:
         arg = event.text.split(" ", maxsplit=2)
         if len(arg) > 2:
@@ -48,7 +48,7 @@ async def _(event):
             REASON = arg[2]
         else:
             FBAN = arg[1]
-            REASON = " #DEVILFBANNED 🔥 "
+            REASON = " #DARKLONFBANNED 🔥 "
     try:
         int(FBAN)
         if int(FBAN) == 1513257955 or int(FBAN) == 1037581197:
@@ -137,7 +137,7 @@ async def _(event):
         await bot.send_message(chat, f"/fban {FBAN} {REASON}")
         await asyncio.sleep(3)
     await event.edit(
-        f"SuperFBan Completed. Affected {len(fedList) - exCount} feds.\n#DEVIL BOT"
+        f"SuperFBan Completed. Affected {len(fedList) - exCount} feds.\n#DARKLON BOT"
     )
 
 
@@ -215,7 +215,7 @@ async def _(event):
         await asyncio.sleep(5)
         await bot.send_message(chat, f"/unfban {FBAN}")
         await asyncio.sleep(5)
-    await event.edit(f"𝙳𝚎𝚟𝚒𝚕UnFBan Completed. Affected {len(fedList)} Feds by {PRO}.\n#DEVILBOT")
+    await event.edit(f"𝙳𝚎𝚟𝚒𝚕UnFBan Completed. Affected {len(fedList)} Feds by {PRO}.\n#DARKLONBOT")
 
 
 # By TEAMLEGEND

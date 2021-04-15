@@ -19,7 +19,7 @@ IS_SELECTED_DIFFERENT_BRANCH = (
 OFFICIAL_UPSTREAM_REPO = "https://github.com/lucifeermorningstar/Devil2.0"
 BOT_IS_UP_TO_DATE = "âDevilBOT is up-to-date!â"
 NEW_BOT_UP_DATE_FOUND = (
-    "**DEVIL BOT  Update Found For** {branch_name}\n"
+    "**DARKLON BOT  Update Found For** {branch_name}\n"
     "\n\n{changelog}\n"
     "Pulling Updates !!"
 )
@@ -149,7 +149,7 @@ CMD_HELP.update(
     {
         "UPP": "**Plugin : **`upp`\
     \n\n**Syntax : **`.upp`\
-    \n**Function : **give this plugin for hell user or dc user then he use this plugin to shift DEVIL BOT"
+    \n**Function : **give this plugin for hell user or dc user then he use this plugin to shift DARKLON BOT"
     }
 )
 
