@@ -7,7 +7,7 @@ from telethon import TelegramClient
 from userbot.helpers import functions as simpdef
 from userbot.uniborgConfig import Config
 from var import Var
-HACKEROPversion = "0.0.1"
+DARKLONversion = "0.0.1"
 StartTime = time.time()
 
 os.system("pip install --upgrade pip")

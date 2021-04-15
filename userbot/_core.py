@@ -10,7 +10,7 @@ from userbot.utils import edit_or_reply as eor
 
 DELETE_TIMEOUT = 3
 thumb_image_path = "./Resources/OPPIC.jpg"
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "HACKEROP BOT"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DARKLON BOT"
 
 
 @bot.on(admin_cmd(pattern=r"send (?P<shortname>\w+)", outgoing=True))
@@ -89,10 +89,10 @@ async def unload(event):
     shortname = event.pattern_match["shortname"]
     try:
         remove_plugin(shortname)
-        qwe = await eor(event, f"HACKEROP BOT Has Successfully unloaded {shortname}")
+        qwe = await eor(event, f"DARKLON BOT Has Successfully unloaded {shortname}")
     except Exception as e:
         await qwe.edit(
-            "HACKEROP BOT has Successfully unloaded {shortname}\n{}".format(shortname, str(e))
+            "DARKLON BOT has Successfully unloaded {shortname}\n{}".format(shortname, str(e))
         )
 
 
@@ -111,5 +111,5 @@ async def load(event):
         qwe = await eor(event, f"Successfully loaded {shortname}")
     except Exception as e:
         await qwe.edit(
-            f"HACKEROP BOT could not load {shortname} because of the following error.\n{str(e)}"
+            f"DARKLON BOT could not load {shortname} because of the following error.\n{str(e)}"
         )

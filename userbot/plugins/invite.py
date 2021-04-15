@@ -1,5 +1,5 @@
 #Originally made by @rekcah for @javes05
-#porting to HACKEROPBOT .
+#porting to DARKLONBOT .
 #i asked rekcah before porting...not like other kangers....
 #keep credit if u wanna kang...
 

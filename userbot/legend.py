@@ -23,8 +23,8 @@ import os
 import datetime
 #importing finished
 from userbot import botnickname 
-BOT = str(botnickname) if botnickname else "HACKEROP BOT"
-NAME = str(ALIVE_NAME) if ALIVE_NAME else "HACKEROP BOY"
+BOT = str(botnickname) if botnickname else "DARKLON BOT"
+NAME = str(ALIVE_NAME) if ALIVE_NAME else "DARKLON BOY"
 tim = get_readable_time((time.time() - StartTime))
 #pic 👇
 PIC = os.environ.get("ALIVE_PIC")
@@ -33,9 +33,9 @@ uptime = tim
 #time = date + time okay
 TIME = time.asctime(time.localtime())
 #my name 👇
-HACKEROP = "[HACKEROP](https://t.me/HACKEROPUSERBOTOWNER)"
+DARKLON = "[DARKLON](https://t.me/DARKLONUSERBOTOWNER)"
 #my bots repo 👇
-REPO = "[HACKEROP 𝗕𝗢𝗧](https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP/)"
+REPO = "[DARKLON 𝗕𝗢𝗧](https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP/)"
 #grpup👇NAME = "[{MAATER}](tg://user?id={X})"
 #yrr isko apne bot me aply krne se pehle mere se pooch lena ok
 #aur aage add kruga abhi busy okay 🤔
@@ -45,6 +45,6 @@ MASTER = f"[{NAME}](tg://user?id={X})"
 GROUP = "[SUPPORT GROUP](https://t.me/hackeropuserbot)"
 #itna test h aur aage krte h
 #test successful raha ab aage 
-ALIVE = "HACKEROP υѕєяησт ιѕ ση🔥 ƒιяє 🔥" #make by ∂єνιℓ
-OP = "𝙷𝙴𝙻𝙻𝙾 𝙼𝚈 𝙽𝙰𝙼𝙴 𝙸𝚂 HACKEROP 𝚄𝚂𝙴𝚁𝙱𝙾𝚃 𝙸 𝙰𝙼 𝚃𝙷𝙴 𝙱𝙴𝚂𝚃 𝚄𝚂𝙴𝚁𝙱𝙾𝚃💝"
+ALIVE = "DARKLON υѕєяησт ιѕ ση🔥 ƒιяє 🔥" #make by ∂єνιℓ
+OP = "𝙷𝙴𝙻𝙻𝙾 𝙼𝚈 𝙽𝙰𝙼𝙴 𝙸𝚂 DARKLON 𝚄𝚂𝙴𝚁𝙱𝙾𝚃 𝙸 𝙰𝙼 𝚃𝙷𝙴 𝙱𝙴𝚂𝚃 𝚄𝚂𝙴𝚁𝙱𝙾𝚃💝"
 EMOJI = "🔥"

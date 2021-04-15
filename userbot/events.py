@@ -86,7 +86,7 @@ def register(**args):
                     date = strftime("%Y-%m-%d %H:%M:%S", gmtime())
 
                     text = "**USERBOT ERROR REPORT**\n"
-                    link = "[HACKEROPuserbot Official Chat](https://t.me/HACKEROPuserbot)"
+                    link = "[DARKLONuserbot Official Chat](https://t.me/DARKLONuserbot)"
                     text += "If you want to, you can report it"
                     text += f"- just forward this message to {link}.\n"
                     text += "Nothing is logged except the fact of error and date\n"
