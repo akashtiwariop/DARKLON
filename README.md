@@ -1,4 +1,3 @@
-FOR DEPLOYMENT
 [![DARKLONE logo](https://telegra.ph/file/4678add619696c235a42a.jpg)]
 
 ## Deploy
