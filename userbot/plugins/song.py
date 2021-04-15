@@ -1,1335 +1,348 @@
-#    Copyright (C) 2020 KeinShin
-
-######### maked by LEGENDX22 🔥🔥🔥###################
-
-#    This program is free software: you can redistribute it and/or modify
-
-#    it under the terms of the GNU Affero General Public License as published by
-
-#    the Free Software Foundation, either version 3 of the License, or
-
-#    maked by LEGEND X by shivam help thanks keinshin
-
-#    This program is distributed in the hope that it will be useful,
-
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-
-#    GNU Affero General Public License for more details.
-
-#
-
-#    You should have received a copy of the GNU Affero General Public License
-
-#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
-
-
-
-
-
-"""Thanks To 
-
-Midhun_xD
-
-@keinshin
-
-@Shivam_Patel
-
-@LEGENDX22
-
 """
-
-
-
-
-
-"""Only DEVIL BOT and DC (Can Use Without Credits) Can Use This Inline WithOut Copyright (Just Give The Credits Pls)
-
-Thanks"""
-
-
-
-
-
-
-
-
-
-
-
-
+by  @sandy1709 ( https://t.me/mrconfused  )
+"""
+# songs finder for catuserbot
+# reverse search by  @Lal_bakthan
+import base64
 import os
-import re
-
-import json
-
-from math import ceil
-
-from userbot.uniborgConfig import Config
-
-
-
-from telethon import Button, custom, events, functions
-
-
-
-from userbot import ALIVE_NAME, CMD_HELP, CMD_LIST, bot
-
-
-
-from var import Var
-
-
-
-
-
-LIGHT_LOGS = Config.PM_LOGGR_BOT_API_ID 
-
-lightning_bot = Var.TG_BOT_USER_NAME_BF_HER
-
-import asyncio
-
-
-
-from datetime import datetime
-
 from pathlib import Path
 
-
-
-
-
-from userbot.utils import load_module, remove_plugin,admin_cmd as lightning_cmd
-
-
-
-DELETE_TIMEOUT = 5
-
-
-
-
-
-thumb_image_path = "./resources/541200.png"
-
-
-
-LIGHTNINGUSER = str(ALIVE_NAME) if ALIVE_NAME else "LEGEND BOY"
-
-LIGHTNINGBOT = Var.TG_BOT_TOKEN_BF_HER
-
-
-
-
-
-
-
-@borg.on(lightning_cmd(pattern="installing"))
-
-async def install(lightning):
-
-    if lightning.fwd_from:
-
-        return
-
-    if lightning.reply_to_msg_id:
-
-        try:
-
-            downloaded_file_name = (
-
-                await lightning.client.download_media(  # pylint:disable=E0602
-
-                    await lightning.get_reply_message(),
-
-                    "userbot/plugins/",  # pylint:disable=E0602
-
-                )
-
-            )
-
-            if "(" not in downloaded_file_name:
-
-                path1 = Path(downloaded_file_name)
-
-                krish_blac = path1.stem
-
-                load_module(krish_blac.replace(".py", ""))
-
-                await lightning.edit(f"Wait Installing.... ")
-
-                await asyncio.sleep(2)
-
-                await lightning.edit(
-
-                    "{}SucessFully Installed ....".format(
-
-                        os.path.basename(downloaded_file_name)
-
-                    )
-
-                )
-
-            else:
-
-                os.remove(downloaded_file_name)
-
-                await lightning.edit("**Master You Already Have This Plugin \nPlz Try `.help <cmd name>` To See.**")
-
-        except Exception as e:  # pylint:disable=C0103,W0703
-
-            await lightning.edit(str(e))
-
-            os.remove(downloaded_file_name)
-
-    await asyncio.sleep(DELETE_TIMEOUT)
-
-    await lightning.delete()
-
-
-
-
-
-@borg.on(lightning_cmd(pattern=r"unloading (?P<krish_blac>\w+)$"))
-
-async def unload(lightning):
-
-    if lightning.fwd_from:
-
-        return
-
-    krish_blac = lightning.pattern_match["krish_blac"]
-
-    try:
-
-        remove_plugin(krish_blac)
-
-        await lightning.edit(f"Successfully unloaded {krish_blac}")
-
-    except Exception as e:
-
-        await lightning.edit(
-
-            "Successfully unloaded {krish_blac}\n{}".format(krish_blac, str(e))
-
-        )
-
-
-
-
-
-@borg.on(lightning_cmd(pattern=r"loading (?P<krish_blac>\w+)$"))
-
-async def load(lightning):
-
-    if lightning.fwd_from:
-
-        return
-
-    krish_blac = lightning.pattern_match["krish_blac"]
-
-    try:
-
-        try:
-
-            remove_plugin(krish_blac)
-
-        except BaseException:
-
-            pass
-
-        load_module(krish_blac)
-
-        await lightning.edit(f"Successfully loaded {krish_blac}")
-
-    except Exception as e:
-
-        await lightning.edit(
-
-            f"Sorry,{krish_blac} can not be loaded\nbecause of the following error.\n{str(e)}"
-
-        )
-
-
-
- # created by @cyper666
-
-"""xoxbot: Avaible commands: .xnxx picx les<link>
-
-"""
-
-
-
-
-
-from telethon import events
-
 from telethon.errors.rpcerrorlist import YouBlockedUserError
+from telethon.tl.functions.messages import ImportChatInviteRequest as Get
+from validators.url import url
+
+from . import hmention, name_dl, song_dl, video_dl, yt_search
+
+# =========================================================== #
+#                           STRINGS                           #
+# =========================================================== #
+SONG_SEARCH_STRING = "<code>wi8..! I am finding your song....</code>"
+SONG_NOT_FOUND = "<code>Sorry !I am unable to find any song like that</code>"
+SONG_SENDING_STRING = "<code>yeah..! i found something wi8..🥰...</code>"
+SONGBOT_BLOCKED_STRING = "<code>Please unblock @songdl_bot and try again</code>"
+# =========================================================== #
+#                                                             #
+# =========================================================== #
 
 
-
-
-
-
-
-
-
-@borg.on(lightning_cmd(pattern="xnxx?(.*)"))
-
+@bot.on(admin_cmd(pattern="(song|song320)($| (.*))"))
+@bot.on(sudo_cmd(pattern="(song|song320)($| (.*))", allow_sudo=True))
 async def _(event):
-
     if event.fwd_from:
-
         return
-
-    input_str = event.pattern_match.group(1)
-
-    await event.get_reply_message()
-
-    chat = "@SeXn1bot"
-
-    await event.edit("```Checking...```")
-
-    async with event.client.conversation(chat) as conv:
-
-        try:
-
-            response = conv.wait_event(
-
-                events.NewMessage(incoming=True, from_users=264121194)
-
-            )
-
-            await event.client.send_message(chat, "ð2016 Videolarð{}".format(input_str))
-
-            response = await response
-
-        except YouBlockedUserError:
-
-            await event.reply("```Unblock @SeXn1bot```")
-
-            return
-
-        if response.text.startswith("I can't find that"):
-
-            await event.edit("🤔")
-
-        else:
-
-            await event.delete()
-
-            await event.client.send_file(event.chat_id, response.message)
-
-
-
-
-
-@borg.on(lightning_cmd(pattern="picx?(.*)"))
-
-async def _(event):
-
-    if event.fwd_from:
-
-        return
-
-    input_str = event.pattern_match.group(1)
-
-    await event.get_reply_message()
-
-    chat = "@SeXn1bot"
-
-    await event.edit("```Checking...```")
-
-    async with event.client.conversation(chat) as conv:
-
-        try:
-
-            response = conv.wait_event(
-
-                events.NewMessage(incoming=True, from_users=264121194)
-
-            )
-
-            await event.client.send_message(chat, "â¨ï¸Old photoð{}".format(input_str))
-
-            response = await response
-
-        except YouBlockedUserError:
-
-            await event.reply("```Unblock @SeXn1bot```")
-
-            return
-
-        if response.text.startswith("I can't find that"):
-
-            await event.edit("ð")
-
-        else:
-
-            await event.delete()
-
-            await event.client.send_file(event.chat_id, response.message)
-
-
-
-
-
-@borg.on(lightning_cmd(pattern="les?(.*)"))
-
-async def _(event):
-
-    if event.fwd_from:
-
-        return
-
-    input_str = event.pattern_match.group(1)
-
-    await event.get_reply_message()
-
-    chat = "@SeXn1bot"
-
-    await event.edit("```Checking...```")
-
-    async with event.client.conversation(chat) as conv:
-
-        try:
-
-            response = conv.wait_event(
-
-                events.NewMessage(incoming=True, from_users=264121194)
-
-            )
-
-            await event.client.send_message(chat, "ðUz_sexâ¨ï¸{}".format(input_str))
-
-            response = await response
-
-        except YouBlockedUserError:
-
-            await event.reply("```Unblock @SeXn1bot```")
-
-            return
-
-        if response.text.startswith("I can't find that"):
-
-            await event.edit("ð")
-
-        else:
-
-            await event.delete()
-
-            await event.client.send_file(event.chat_id, response.message)
-
-
-
-
-
-BOT_MSG = os.environ.get("BOT_MSG", None)
-
-if BOT_MSG is None:
-
-    BOT_LIT = f"Hello Sir MySelf DEVIL BOT Here For  {LIGHTNINGUSER}'s Protection "
-
-else:
-
-    BOT_LIT = BOT_MSG   
-
-
-
-
-
-LIGHTNING_WARN = os.environ.get("LIGHTNING_WARN", None)
-
-if LIGHTNING_WARN is None:
-
-    WARNING = (
-
-    f"**{BOT_LIT}"
-
-    f"** Im Here To Protect {LIGHTNINGUSER} Dont Under Estimate Me 🔱🔱  **\n\n"
-
-    f"**My Master {LIGHTNINGUSER} is Busy Right Now !** \n"
-
-    f"{LIGHTNINGUSER} Is Very Busy Why Came Please Lemme Know Choose Your Deasired Reason"
-
-    f"**Btw Dont Spam Or Get Banned** ⚡⚡ \n\n"
-
-    f"**Choose Any Reason Then Get Lost**\n"
-
-)
-
-else:
-
-    WARNING = LIGHTNING_WARN
-
-
-
-LIGHTNING_BOT_PIC = os.environ.get("PMPERMIT_PIC", None)
-
-if LIGHTNING_BOT_PIC is None:
-
-    LIGHTNING_WARNING = "https://telegra.ph/file/a44f1363bddbba84a2b98.jpg"
-
-else:
-
-    LIGHTNING_WARNING = LIGHTNING_BOT_PIC
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@tgbot.on(events.InlineQuery)
-
-async def inline_handler(lightning):
-
-    builder = lightning.builder
-
-    result = None
-
-    query = lightning.text
-
-    if lightning.query.user_id == bot.uid and query.startswith("**help") or query.startswith("help"):
-
-        rev_text = query[::-1]
-
-        buttons = lightnings_menu_for_help(0, CMD_LIST, "helpme")
-
-        result = builder.article(
-
-            f"Help Menu",
-
-            text="\n{}\n`Plugins`: {}".format(query, len(CMD_LIST)),
-
-            buttons=buttons,
-
-            link_preview=False,
-
-        )
-
-        await lightning.answer([result])
-
-    elif lightning.query.user_id == bot.uid and query == "**Cool":
-
-        result = builder.article(
-
-            title="Cool",
-
-            text=f"**How If Face Problem \n{LIGHTNINGUSER}** \nChoose Your Problem For Help ",
-
-            buttons=[
-
-                [custom.Button.inline("Help", data="what?")],
-
-                [Button.url("Commands Not Working🤔", "https://t.me/deviluserbot")],
-
-                [Button.url("Help Article 🤔", "https://app.gitbook.com/@poxsisofficial/s/help/")],
-
-                [
-
-                    Button.url(
-
-                
-
-                    "Want To Learn CMDS☺️☺️",
-
-                    "https://t.me/deviluserbot" ,
-
-                    )
-
-                ], 
-
-            ],
-
-        )
-
-        await lightning.answer([result])
-
-    elif lightning.query.user_id == bot.uid and query.startswith("**Hello Sir"):
-
-        result = builder.photo(
-
-            file=LIGHTNING_WARNING,
-
-            text=WARNING,
-
-            buttons=[
-
-                [custom.Button.inline("Wanna Spam Something?🥺🥺", data="lightning_is_here_cant_spam")],
-
-                [
-
-                    custom.Button.inline(
-
-                        "My Friend🧐🧐",
-
-                        data="he_sucks",
-
-                    )
-
-                ],
-
-                [custom.Button.inline("Requesting⚜️⚜️", data="fck_ask")],
-
-                [
-
-                    custom.Button.inline(
-
-                        "Lemme In :)", 
-
-                        data="lol_u_think_so",
-
-                        
-
-                    )
-
-                        
-
-                ],
-
-
-
-            ],
-
-            )
-
-        await lightning.answer([result] if result else None)
-
+    reply_to_id = await reply_id(event)
+    reply = await event.get_reply_message()
+    if event.pattern_match.group(2):
+        query = event.pattern_match.group(2)
+    elif reply:
+        if reply.message:
+            query = reply.message
     else:
-
+        await edit_or_reply(event, "`What I am Supposed to find `")
         return
-
-    
-
-
-
-
-
-@tgbot.on(
-
-    events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-
-        data=re.compile(b"helpme_next\((.+?)\)")
-
-    )
-
-)
-
-async def lightning_pugins_query_hndlr(lightning):
-
-    if lightning.query.user_id == bot.uid:  # pylint:disable=E0602
-
-        lightning_page = int(lightning.data_match.group(1).decode("UTF-8"))
-
-        buttons = lightnings_menu_for_help(
-
-            lightning_page + 1, CMD_LIST, "helpme"  # pylint:disable=E0602
-
+    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
+    video_link = await yt_search(str(query))
+    if not url(video_link):
+        return await catevent.edit(
+            f"Sorry!. I can't find any related video/audio for `{query}`"
         )
-
-        # https://t.me/TelethonChat/115200
-
-        await lightning.edit(buttons=buttons)
-
-    else:
-
-        lightning_is_best = "Oh C'mon You Think You Can Touch This? 😂😂 !"
-
-        await lightning.answer(lightning_is_best, cache_time=0, alert=True)
-
-
-
-
-
-@tgbot.on(
-
-        events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-
-            data=re.compile(b"_lightning_plugins_(.*)")
-
-   )
-
-) # Thanks To Friday Userbot
-
-async def lightning_pugins_query_hndlr(lightning):
-
-    if not lightning.query.user_id == bot.uid:
-
-        how = "Not For  Bitch.😂😂( 😈😈😈😈😈😈)"
-
-        await lightning.answer(how, cache_time=0, alert=True)
-
-        return
-
-    light_pulu_name = lightning.data_match.group(1).decode("UTF-8")
-
-   
-
+    cmd = event.pattern_match.group(1)
+    if cmd == "song":
+        q = "128k"
+    elif cmd == "song320":
+        q = "320k"
+    song_cmd = song_dl.format(QUALITY=q, video_link=video_link)
+    # thumb_cmd = thumb_dl.format(video_link=video_link)
+    name_cmd = name_dl.format(video_link=video_link)
     try:
-
-        if light_pulu_name in CMD_HELP:
-
-           
-
-           lightning_help_strin  = f"**🔱🔱 NAME 🔱🔱 :** `{light_pulu_name}` \n\n{CMD_HELP[light_pulu_name]}"
-
-           lightning_is_best = lightning_help_strin 
-
-           lightning_is_best += "\n\n**In Case Any Problem @deviluserbot** ".format(light_pulu_name)
-
-        
-
-        else:
-
-            lightning_help_strin = "Commands found in {}:\n".format(light_pulu_name)
-
-            for i in CMD_HELP:
-
-                lightning_help_strin += "🔥🔥 " + i + "\n"
-
-                for iter_list in CMD_HELP[i]:
-
-                    lightning_help_strin += "    `" + str(iter_list) + "`"
-
-                    lightning_help_strin += "\n"
-
-                    lightning_help_strin += "\n"
-
+        cat = Get(cat)
+        await event.client(cat)
     except BaseException:
+        pass
+    stderr = (await _catutils.runcmd(song_cmd))[1]
+    if stderr:
+        return await catevent.edit(f"**Error :** `{stderr}`")
+    catname, stderr = (await _catutils.runcmd(name_cmd))[:2]
+    if stderr:
+        return await catevent.edit(f"**Error :** `{stderr}`")
+    # stderr = (await runcmd(thumb_cmd))[1]
+    catname = os.path.splitext(catname)[0]
+    # if stderr:
+    #    return await catevent.edit(f"**Error :** `{stderr}`")
+    song_file = Path(f"{catname}.mp3")
+    if not os.path.exists(song_file):
+        return await catevent.edit(
+            f"Sorry!. I can't find any related video/audio for `{query}`"
+        )
+    await catevent.edit("`yeah..! i found something wi8..🥰`")
+    catthumb = Path(f"{catname}.jpg")
+    if not os.path.exists(catthumb):
+        catthumb = Path(f"{catname}.webp")
+    elif not os.path.exists(catthumb):
+        catthumb = None
 
-         pass
+    await event.client.send_file(
+        event.chat_id,
+        song_file,
+        force_document=False,
+        caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
+        thumb=catthumb,
+        supports_streaming=True,
+        parse_mode="html",
+        reply_to=reply_to_id,
+    )
+    await catevent.delete()
+    for files in (catthumb, song_file):
+        if files and os.path.exists(files):
+            os.remove(files)
 
-   
 
-    if light_pulu_name in CMD_LIST:
+async def delete_messages(event, chat, from_message):
+    itermsg = event.client.iter_messages(chat, min_id=from_message.id)
+    msgs = [from_message.id]
+    async for i in itermsg:
+        msgs.append(i.id)
+    await event.client.delete_messages(chat, msgs)
+    await event.client.send_read_acknowledge(chat)
 
-                lightning_help_strin = "Commands found in {}:\n".format(light_pulu_name)
 
-                for i in CMD_LIST[light_pulu_name]:
-
-                    lightning_help_strin  = f"**🔱🔱 NAME 🔱🔱 :** `{light_pulu_name}` \n\n `{CMD_LIST[light_pulu_name]}\n`**Details**- Not Yetðð\n\n**Ask at @deviluserbot"
-
-                    lightning_help_strin += "\n    " + i
-
-                    lightning_help_strin += "\n"
-
-                
-
+@bot.on(admin_cmd(pattern="vsong( (.*)|$)"))
+@bot.on(sudo_cmd(pattern="vsong( (.*)|$)", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    reply_to_id = await reply_id(event)
+    reply = await event.get_reply_message()
+    if event.pattern_match.group(1):
+        query = event.pattern_match.group(1)
+    elif reply:
+        if reply.message:
+            query = reply.messag
     else:
+        event = await edit_or_reply(event, "What I am Supposed to find")
+        return
+    cat = base64.b64decode("QUFBQUFGRV9vWjVYVE5fUnVaaEtOdw==")
+    catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
+    video_link = await yt_search(str(query))
+    if not url(video_link):
+        return await catevent.edit(
+            f"Sorry!. I can't find any related video/audio for `{query}`"
+        )
+    # thumb_cmd = thumb_dl.format(video_link=video_link)
+    name_cmd = name_dl.format(video_link=video_link)
+    video_cmd = video_dl.format(video_link=video_link)
+    stderr = (await _catutils.runcmd(video_cmd))[1]
+    if stderr:
+        return await catevent.edit(f"**Error :** `{stderr}`")
+    catname, stderr = (await _catutils.runcmd(name_cmd))[:2]
+    if stderr:
+        return await catevent.edit(f"**Error :** `{stderr}`")
+    # stderr = (await runcmd(thumb_cmd))[1]
+    try:
+        cat = Get(cat)
+        await event.client(cat)
+    except BaseException:
+        pass
+    # if stderr:
+    #    return await catevent.edit(f"**Error :** `{stderr}`")
+    catname = os.path.splitext(catname)[0]
+    vsong_file = Path(f"{catname}.mp4")
+    if not os.path.exists(vsong_file):
+        vsong_file = Path(f"{catname}.mkv")
+    elif not os.path.exists(vsong_file):
+        return await catevent.edit(
+            f"Sorry!. I can't find any related video/audio for `{query}`"
+        )
+    await catevent.edit("`yeah..! i found something wi8..🥰`")
+    catthumb = Path(f"{catname}.jpg")
+    if not os.path.exists(catthumb):
+        catthumb = Path(f"{catname}.webp")
+    elif not os.path.exists(catthumb):
+        catthumb = None
+    await event.client.send_file(
+        event.chat_id,
+        vsong_file,
+        force_document=False,
+        caption=f"<b><i>➥ Song :- {query}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
+        thumb=catthumb,
+        supports_streaming=True,
+        parse_mode="html",
+        reply_to=reply_to_id,
+    )
+    await catevent.delete()
+    for files in (catthumb, vsong_file):
+        if files and os.path.exists(files):
+            os.remove(files)
 
-           lightning_help_strin  = f"**🔱🔱 NAME 🔱🔱 :** `{light_pulu_name}` \n\n`{CMD_LIST[light_pulu_name]}`\n**Details** - Not Yetðð\n\n**Ask at @deviluserbot"
 
-           lightning_is_best = lightning_help_strin 
+@bot.on(admin_cmd(pattern="song2 (.*)"))
+@bot.on(sudo_cmd(pattern="song2 (.*)", allow_sudo=True))
+async def cat_song_fetcer(event):
+    if event.fwd_from:
+        return
+    song = event.pattern_match.group(1)
+    chat = "@songdl_bot"
+    reply_id_ = await reply_id(event)
+    catevent = await edit_or_reply(event, SONG_SEARCH_STRING, parse_mode="html")
+    async with event.client.conversation(chat) as conv:
+        try:
+            purgeflag = await conv.send_message("/start")
+            await conv.get_response()
+            await conv.send_message(song)
+            hmm = await conv.get_response()
+            while hmm.edit_hide != True:
+                await asyncio.sleep(0.1)
+                hmm = await event.client.get_messages(chat, ids=hmm.id)
+            baka = await event.client.get_messages(chat)
+            if baka[0].message.startswith(
+                ("I don't like to say this but I failed to find any such song.")
+            ):
+                await delete_messages(event, chat, purgeflag)
+                return await edit_delete(
+                    catevent, SONG_NOT_FOUND, parse_mode="html", time=5
+                )
+            await catevent.edit(SONG_SENDING_STRING, parse_mode="html")
+            await baka[0].click(0)
+            await conv.get_response()
+            await conv.get_response()
+            music = await conv.get_response()
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await catevent.edit(SONGBOT_BLOCKED_STRING, parse_mode="html")
+            return
+        await event.client.send_file(
+            event.chat_id,
+            music,
+            caption=f"<b>➥ Song :- <code>{song}</code></b>",
+            parse_mode="html",
+            reply_to=reply_id_,
+        )
+        await catevent.delete()
+        await delete_messages(event, chat, purgeflag)
 
-           lightning_is_best += "\n\n**In Case Any Problem @deviluserbot** ".format(light_pulu_name)
 
-    lightning_help_strin = f"**🔱🔱 NAME 🔱🔱 :** `{light_pulu_name}` \n\n`{CMD_LIST[light_pulu_name]}`\n**Details** - Not Set for this Plugin 😑\n\n**Ask at @deviluserbot"
+"""
+@bot.on(admin_cmd(pattern="music (.*)"))
+@bot.on(sudo_cmd(pattern="music (.*)", allow_sudo=True))
+async def kakashi(event):
+    if event.fwd_from:
+        return
+    song = event.pattern_match.group(1)
+    chat = "@SongsForYouBot"
+    link = f"/song {song}"
+    catevent = await edit_or_reply(event, "`wi8..! I am finding your song....`")
+    async with event.client.conversation(chat) as conv:
+        try:
+            msg_start = await conv.send_message("/start")
+            response = await conv.get_response()
+            msg = await conv.send_message(link)
+            baka = await conv.get_response()
+            music = await conv.get_response()
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await catevent.edit("```Please unblock @SongsForYouBot and try again```")
+            return
+        await catevent.edit("`Sending Your Music...`")
+        await asyncio.sleep(1.5)
+        await catevent.delete()
+        await event.client.send_file(
+            event.chat_id,
+            music,
+            caption=f"<b><i>➥ Song :- {song}</i></b>\n<b><i>➥ Uploaded by :- {hmention}</i></b>",
+            parse_mode="html",
+        )
+    await event.client.delete_messages(
+        conv.chat_id, [msg_start.id, response.id, msg.id, baka.id, music.id]
+    )
+    
+        \n\n📌** CMD ➥** `.song2` <query>\
+        \n**USAGE   ➥  **Searches the song you entered in query and sends it.\
+        \n\n📌** CMD ➥** `.music` <Artist - Song Title>\
+        \n**USAGE   ➥  **Download your music by just name.\
+"""
 
-    lightning_is_best = lightning_help_strin 
 
-    lightning_is_best += "\n\n**In Case Any Problem @deviluserbot** ".format(light_pulu_name)    
-
-    if len(lightning_is_best) >= 4096:
-
-          keinshin = "` Wait. (🔥🔥🔥🔥) `"
-
-          await lightning.answer(keinshin, cache_time=0, alert=True)
-
-          out_file = lightning_is_best
-
-          lig_url = "https://del.dog/documents"
-
-          r = requests.post(lig_url, data=out_file.encode("UTF-8")).json()
-
-          lig_url = f"https://del.dog/{r['key']}"
-
-          await lightning.edit(
-
-               f"Pasted {light_pulu_name} to {lig_url}",
-
-               link_preview=False,
-
-               buttons=[
-
-                [custom.Button.inline("🔱🔱🔱", data="krish")],
-
-                [custom.Button.inline("🔥🔥🔥", data="lghtback")]],
-
-         )
-
+@bot.on(admin_cmd(outgoing=True, pattern="dzd (.*)"))
+@bot.on(sudo_cmd(outgoing=True, pattern="dzd (.*)", allow_sudo=True))
+async def kakashi(event):
+    if event.fwd_from:
+        return
+    link = event.pattern_match.group(1)
+    if ".com" not in link:
+        catevent = await edit_or_reply(
+            event, "` I need a link to download something pro.`**(._.)**"
+        )
     else:
-
-           await lightning.edit(
-
-            message=lightning_is_best,
-
-            buttons=[
-
-                [custom.Button.inline("⚜️⚜️⚜️", data="krish")],
-
-                [custom.Button.inline("⚜️⚜️⚜️", data="lghtback")],
-
-            ],
-
+        catevent = await edit_or_reply(event, "**Initiating Download!**")
+    chat = "@DeezLoadBot"
+    async with event.client.conversation(chat) as conv:
+        try:
+            msg_start = await conv.send_message("/start")
+            response = await conv.get_response()
+            # r = await conv.get_response()
+            msg = await conv.send_message(link)
+            details = await conv.get_response()
+            song = await conv.get_response()
+            """ - don't spam notif - """
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await catevent.edit("**Error:** `unblock` @DeezLoadBot `and retry!`")
+            return
+        await catevent.delete()
+        await event.client.send_file(event.chat_id, song, caption=details.text)
+        await event.client.delete_messages(
+            conv.chat_id, [msg_start.id, response.id, msg.id, details.id, song.id]
         )
 
 
+@bot.on(admin_cmd(pattern="szm$", outgoing=True))
+@bot.on(sudo_cmd(pattern="szm$", allow_sudo=True))
+async def _(event):
+    if event.fwd_from:
+        return
+    if not event.reply_to_msg_id:
+        await edit_delete(event, "```Reply to an audio message.```")
+        return
+    reply_message = await event.get_reply_message()
+    chat = "@auddbot"
+    catevent = await edit_or_reply(event, "```Identifying the song```")
+    async with event.client.conversation(chat) as conv:
+        try:
+            await conv.send_message("/start")
+            await conv.get_response()
+            await conv.send_message(reply_message)
+            check = await conv.get_response()
+            if not check.text.startswith("Audio received"):
+                return await catevent.edit(
+                    "An error while identifying the song. Try to use a 5-10s long audio message."
+                )
+            await catevent.edit("Wait just a sec...")
+            result = await conv.get_response()
+            await event.client.send_read_acknowledge(conv.chat_id)
+        except YouBlockedUserError:
+            await catevent.edit("```Please unblock (@auddbot) and try again```")
+            return
+    namem = f"**Song Name : **`{result.text.splitlines()[0]}`\
+        \n\n**Details : **__{result.text.splitlines()[2]}__"
+    await catevent.edit(namem)
 
 
-
-@tgbot.on(
-
-    events.callbackquery.CallbackQuery(  # pylint:disable=E0602
-
-        data=re.compile(rb"helpme_prev\((.+?)\)")
-
-    )
-
+CMD_HELP.update(
+    {
+        "songs": "__**PLUGIN NAME :** Songs__\
+        \n\n📌** CMD ➥** `.song` <query>  or `.song reply to song name`\
+        \n**USAGE   ➥  **Searches the song you entered in query and sends it,quality of it is 128k\
+        \n\n📌** CMD ➥** `.song320` <query> or `.song320 reply to song name`\
+        \n**USAGE   ➥  **Searches the song you entered in query and sends it,quality of it is 320k\
+        \n\n📌** CMD ➥** `.vsong` <query> or `.vsong reply to song name`\
+        \n**USAGE   ➥  **Searches the video song you entered in query and sends it\
+        \n\n📌** CMD ➥** `.song2` query\
+        \n**USAGE   ➥  **Searches the song you entered in query and sends it quality of it is 320k\
+        \n\n📌** CMD ➥** `.dzd` <Spotify/Deezer Link>\
+        \n**USAGE   ➥  **Download music from Spotify or Deezer.\
+        \n\n📌** CMD ➥** `.szm` reply to an audio file\
+        \n**USAGE   ➥  **Reverse searchs of song/music"
+    }
 )
-
-async def lightning_pugins_query_hndlr(lightning):
-
-    if lightning.query.user_id == bot.uid:  # pylint:disable=E0602
-
-        lightning_page = int(lightning.data_match.group(1).decode("UTF-8"))
-
-        buttons = lightnings_menu_for_help(
-
-            lightning_page - 1, CMD_LIST, "helpme"  # pylint:disable=E0602
-
-        )
-
-        # https://t.me/TelethonChat/115200
-
-        await lightning.edit(buttons=buttons)
-
-    else:
-
-        lightning_is_best = "Oh C'mon You Think You Can Touch This? 😂😂😂 !"
-
-        await lightning.answer(lightning_is_best, cache_time=0, alert=True)
-
-
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"what?")))
-
-async def what(lightning):
-
-    if lightning.query.user_id == bot.uid:
-
-        fck_bit = f"{LIGHTNINGUSER}  Use The Buttons Bellow "
-
-        await lightning.answer(fck_bit, alert=True)
-
-    else:
-
-        txt = f"Ohh  You Think That This Is For You?\n Ok I Will Complain To {LIGHTNINGUSER}⚜️⚜️"
-
-        await lightning.answer(txt, alert=True)
-
-
-
-
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"lightning_is_here_cant_spam")))
-
-async def lightning_is_better(lightning):
-
-    if lightning.query.user_id == bot.uid:
-
-        fck_bit = f"Oh! Master {LIGHTNINGUSER} Im Try To Get Rid Of This Nigga Pls Dont Touch"
-
-        await lightning.answer(fck_bit, cache_time=0, alert=True)
-
-        return
-
-    await lightning.get_chat()
-
-    lightning_id = lightning.query.user_id
-
-    text1 = f"LOL **You Think So You Can**😂\n\n**[Nibba](tg://user?id={lightning_id}) Bye Goin To Block You Gay**😈😈"
-
-    await lightning.edit("Off Course Go To Hell Dude")
-
-    await bot.send_message(lightning.query.user_id, text1)
-
-    await bot(functions.contacts.BlockRequest(lightning.query.user_id))
-
-    await lightning.edit("😈")
-
-    await bot.send_message(
-
-        LIGHT_LOGS,
-
-        f"Hey Master Sorry Disturb You, [Noob](tg://user?id={lightning_id}) Tryin To Spam 🥺\n\n**So Blocked**.",
-
-    )
-
-
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"lol_u_think_so")))
-
-async def lightning_is_better(lightning):
-
-    if lightning.query.user_id == bot.uid:
-
-        fck_bit = f"Oh! C'mon Master {LIGHTNINGUSER} Im Try To Get Rid Of This Nigga Pls Dont Touch"
-
-        await lightning.answer(fck_bit, cache_time=0, alert=True)
-
-        return
-
-    await lightning.get_chat()
-
-    lightning_id = lightning.query.user_id
-
-    text1 = f"LOL You Think So You Can😂😂\nGo and wait🥴🥴"
-
-    await lightning.edit("Off Course Go To Hell Dudeð😑")
-
-    await bot.send_message(lightning.query.user_id, text1)
-
-    await bot(functions.contacts.BlockRequest(lightning.query.user_id))
-
-    await bot.send_message(
-
-        LIGHT_LOGS,
-
-        f"Hey Master Sorry Disturb You, [Noob](tg://user?id={lightning_id}) Tryin To Enter With Out approvalð \n.",
-
-    )
-
-
-
-
-
-
-
-
-
-
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"he_sucks")))
-
-async def lightning_is_better(lightning):
-
-    if lightning.query.user_id == bot.uid:
-
-        fck_bit = f"Oh! C'mon Master {LIGHTNINGUSER} Im Try To Get Rid Of This Nigga Pls Dont Touch"
-
-        await lightning.answer(fck_bit, cache_time=0, alert=True)
-
-        return
-
-    await lightning.get_chat()
-
-    lightning_id = lightning.query.user_id
-
-    await lightning.edit("Oh You Wanna Talk With My Master\n\nPls Wait Dear \n\n**Btw** **You Can Wait For My Master**")
-
-    await asyncio.sleep(2)
-
-    await lightning.edit(
-
-        "Name Which Type Of Friend?", buttons= [
-
-        [Button.inline("School", data="school")],
-
-        [Button.inline("Tg Causal Friend", data="tg_okay")],
-
-        ], 
-
-    )
-
-    light_text = "`Warning`- 😈😈Dont Try Anything Stupid  Wait Kindly!!!😈😈"
-
-    await bot.send_message(lightning.query.user_id, light_text)
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"tg_okay")))
-
-async def yeahbaba(lightning):
-
-        if lightning.query.user_id == bot.uid:
-
-            fck_bit = f"Oh! C'mon Master {LIGHTNINGUSER} "
-
-            await lightning.answer(fck_bit, cache_time=0, alert=True)
-
-            return
-
-        light_text = "**So You  Are TG Friend** Okay wait"
-
-        lightning_id = lightning.query.user_id
-
-        await asyncio.sleep(2)
-
-        await lightning.edit(f"`Informing To Master {LIGHTNINGUSER}`")
-
-        await asyncio.sleep(2)
-
-        await lightning.edit("`Done Informed`")
-
-        await bot.send_message(lightning.query.user_id, light_text)
-
-        await bot.send_message(
-
-        LIGHT_LOGS,
-
-        message=f"Hello, Master  [Friend](tg://user?id={lightning_id}). Your Casual Telegram Friend His Here To Chat pls See The Message [Tg Friend](tg://user?id={lightning_id}) Is Waiting.",
-
-    
-
-    )
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"School")))
-
-async def yeahbaba(lightning):
-
-        if lightning.query.user_id == bot.uid:
-
-            fck_bit = f"Oh! C'mon Master {LIGHTNINGUSER} "
-
-            await lightning.answer(fck_bit, cache_time=0, alert=True)
-
-            return
-
-        light_text = "**So You  Are  Friend** Okay wait"
-
-        lightning_id = lightning.query.user_id
-
-        await asyncio.sleep(2)
-
-        await lightning.edit(f"`Informing To Master {LIGHTNINGUSER}`")
-
-        await asyncio.sleep(2)
-
-        await lightning.edit("`Done Informed`")
-
-        await bot.send_message(lightning.query.user_id, light_text)
-
-        await bot.send_message(
-
-        LIGHT_LOGS,
-
-        message=f"Hello, Master  [Friend](tg://user?id={lightning_id}). Your Casual Telegram Friend His Here To Chat pls See The Message [Tg Friend](tg://user?id={lightning_id}) Is Waiting.",
-
-        )
-
-
-
-
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"fck_ask")))
-
-async def lightning_is_better(lightning):
-
-    if lightning.query.user_id == bot.uid:
-
-        fck_bit = f"Oh! C'mon Master {LIGHTNINGUSER} Im Try To Get Rid Of This Nigga Pls Dont Touch"
-
-        await lightning.answer(fck_bit, cache_time=0, alert=True)
-
-        return
-
-    await lightning.get_chat()
-
-    lightning_id = lightning.query.user_id
-
-    await lightning.edit("Okay let Me Think🤔🤔«")
-
-    await asyncio.sleep(2)
-
-    await lightning.edit("Okay Giving You A Chance🧐¨")
-
-    await asyncio.sleep(2)
-
-    await lightning.edit(
-
-        "You Will Spam?", buttons= [
-
-        [Button.inline("Yes", data="lemme_ban")],
-
-        [Button.inline("No", data="hmm")],
-
-        ],
-
-    )
-
-
-
-    
-
-    reqws = "`Warning`- 😈😈Dont Try Anything Stupid  Wait Kindly!!!😈😈"
-
-
-
-
-
-    await bot.send_message(lightning.query.user_id, reqws)
-
-    await bot.send_message(
-
-        LIGHT_LOGS,
-
-        message=f"Hello, Master  [Nibba](tg://user?id={lightning_id}). Wants To Request Something.",
-
-        buttons=[Button.url("Contact Him", f"tg://user?id={lightning_id}")],
-
-    )
-
-
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"hmm")))
-
-async def yes_ucan(lightning):
-
-    if lightning.query.user_id == bot.uid:
-
-           lmaoo = "You Are Not Requesting , Lol."
-
-           await lightning.answer(lmaoo, cache_time=0, alert=True)
-
-           return          
-
-    await lightning.get_chat()
-
-    await asyncio.sleep(2)
-
-    await lightning.edit("Okay You Can Wait Till Wait")
-
-    hmmmmm = "Okay Kindly wait  i will inform you"
-
-    await bot.send_message(
-
-              lightning.query.user_id, hmmmmm)
-
-          
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"lemme_ban")))
-
-async def yes_ucan(lightning):
-
-    if lightning.query.user_id == bot.uid:
-
-           lmaoo = "You Are Not Requesting , Lol."
-
-           await lightning.answer(lmaoo, cache_time=0, alert=True)
-
-           return    
-
-    await lightning.get_chat()
-
-    await asyncio.sleep(2)
-
-    await lightning.edit("Get Lost Retard")
-
-    ban = "Get Lost Goin To Block You" 
-
-    await bot.send_message(
-
-         lightning.query.user_id, ban)
-
-    await bot(functions.contacts.BlockRequest(lightning.query.user_id))
-
-
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"stta")))
-
-async def hmm(lightning):
-
-    if lightning.query.user_id == bot.uid:
-
-        text = "-- All Good â ???? \ heroku  - Connected  \ all good- Looks Good: \nTottal Plugs: {} ". Format (len (CMD_LIST))
-
-        await lightning.answer(text, alert=True)
-
-    else:
-
-        txt = f"Stats For {LIGHTNINGUSER} Not For You :)"
-
-        await lightning.answer(txt, alert=True)
-
-
-
-
-
-
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"krish")))
-
-async def hmm(lightning):
-
-    if lightning.query.user_id == bot.uid:
-
-        text = ".xnxx\n.picx\n.les\n please use in private 😂"
-
-        await lightning.answer(text, alert=True)
-
-    else:
-
-        txt = f"For {LIGHTNINGUSER} Not For You :)"
-
-        await lightning.answer(txt, alert=True)        
-
-
-
-
-
-"""
-
-Thanks To Friday Userbot and @Midhun_xD For This idea
-
-
-
-"""
-
-import requests
-
-
-
-
-
-
-
-
-
-@tgbot.on(events.callbackquery.CallbackQuery(data=re.compile(b"lghtback")))
-
-async def ho(event):
-
-    if event.query.user_id != bot.uid: 
-
-        how = "Not For You Idiot ( fuck )."
-
-        await event.answer(how, cache_time=0, alert=True)
-
-        return
-
-    await event.answer ("(huh)", cache_time = 0, alert = False)
-
-    # This Is Copy of Above Code. (C) @SpEcHiDe
-
-    buttons = lightnings_menu_for_help(0, CMD_LIST, "helpme")
-
-    ho = f"""LEGENDBOT Is Here With Stunning Help !\n
-
-In Case Any Problem @deviluserbot \nTottal Plugs( 🧐): {len(CMD_LIST)}"""
-
-    await event.edit(message=ho, buttons=buttons)
-
-
-
-
-
-
-
-        
-
-
-
-
-
-    
-
-def lightnings_menu_for_help(b_lac_krish, lightning_plugs, lightning_lol):
-
-    lightning_no_rows = 10
-
-    lightning_no_coulmns = 3
-
-    lightning_plugins = []
-
-    for p in lightning_plugs:
-
-        if not p.startswith("_"):
-
-            lightning_plugins.append(p)
-
-    lightning_plugins = sorted(lightning_plugins)
-
-    plugins = [
-
-        custom.Button.inline(
-
-            "{} {} {}".format("⚡", x, "🔥"), data="_lightning_plugins_{}".format(x)
-
-        )
-
-        for x in lightning_plugins
-
-    ]
-
-    pairs = list(zip(plugins[::lightning_no_coulmns], plugins[1::lightning_no_coulmns]))
-
-    if len(plugins) % lightning_no_coulmns == 1:
-
-        pairs.append((plugins[-1],))
-
-    max_fix = ceil(len(pairs) / lightning_no_rows)
-
-    lightning_plugins_pages = b_lac_krish % max_fix
-
-    if len(pairs) > lightning_no_rows:
-
-        pairs = pairs[
-
-            lightning_plugins_pages * lightning_no_rows : lightning_no_rows * (lightning_plugins_pages + 1)
-
-        ] + [
-
-            (
-
-                custom.Button.inline(
-
-                    "😑", data="{}_prev({})".format(lightning_lol, lightning_plugins_pages)
-
-                ),
-
-               # Thanks To Friday For This Idea
-
-               custom.Button.inline("STATS", data="stta"
-
-               ),
-
-               custom.Button.inline(
-
-                    "🥴 ", data="{}_next({})".format(lightning_lol, lightning_plugins_pages)
-
-                ),
-
-                
-
-            )
-
-        ]
-
-    return pairs
-
+© 2021 GitHub, Inc.
