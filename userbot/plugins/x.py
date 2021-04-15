@@ -54,6 +54,7 @@ if Var.TG_BOT_USER_NAME_BF_HER is not None and tgbot is not None:
             await event.answer([result] if result else None)
         else:
               reply_pop_up_alert = "Please get your own Userbot😁😁,for more info visit @DARKLON_USERBOT_SUPPORT! 😎😎
+                await event.answer(reply_pop_up_alert, cache_time=0, alert=False)
     @tgbot.on(events.callbackquery.CallbackQuery(  # pylint:disable=E0602
         data=re.compile(b"helpme_next\((.+?)\)")
     ))#hehe
