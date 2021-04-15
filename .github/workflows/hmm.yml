@@ -19,9 +19,9 @@ jobs:
 
         with:
 
-          find: "lucifeermorningstar/Devil"
+          find: "𝗗𝗘𝗩𝗜𝗟"
 
-          replace: "HACKERBOTTELEGRAM/HACKERBOTOP"
+          replace: "DARKLON"
 
       - name: Create Pull Request
 
