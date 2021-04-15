@@ -49,7 +49,7 @@ for name in files:
 
 import userbot._core
 
-print("𝙳𝙴𝚅𝙸𝙻 𝚄𝚂𝙴𝚁𝙱𝙾𝚃 is on fire 🔥🔥🔥 all files installed on your bot.... Join @deviluserbot for any help..")
+print("HACKEROP 𝚄𝚂𝙴𝚁𝙱𝙾𝚃 is on fire 🔥🔥🔥 all files installed on your bot.... Join @HACKEROPUSERBOT for any help..")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
