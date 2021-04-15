@@ -7,7 +7,7 @@ from telethon import TelegramClient
 from userbot.helpers import functions as simpdef
 from userbot.uniborgConfig import Config
 from var import Var
-devilversion = "2.0"
+HACKEROPversion = "0.0.1"
 StartTime = time.time()
 
 os.system("pip install --upgrade pip")
@@ -30,7 +30,7 @@ LOAD_PLUG = {}
 # PaperPlaneExtended Support Vars
 ENV = os.environ.get("ENV", False)
 
-LEGEND_ID = ["1037581197"]
+LEGEND_ID = ["1694874284"]
 
 """ PPE initialization. """
 
@@ -141,7 +141,7 @@ if bool(ENV):
     # Upstream Repo
     UPSTREAM_REPO_URL = os.environ.get(
     "UPSTREAM_REPO_URL",
-    "https://github.com/lucifeermorningstar/Devil.git")
+    "https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP.git")
 
     # Last.fm Module
     BIO_PREFIX = os.environ.get("BIO_PREFIX", None)
