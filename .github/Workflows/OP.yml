@@ -19,7 +19,7 @@ jobs:
 
         with:
 
-          find: "DEVIL"
+          find: "DEVIL USERBOT"
 
           replace: "HACKEROP"
 
