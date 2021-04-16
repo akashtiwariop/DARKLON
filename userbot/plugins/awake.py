@@ -60,7 +60,7 @@ async def amireallyalive(awake):
 CMD_HELP.update(
     {
         "awake": "Plugin : awake\
-    \n\nSyntax : /awake\
+    \n\nSyntax : .awake\
     \nFunction : you can set here costom alive pic .set var ALIVE_PHOTTO (Telegraph link)"
     }
 )
