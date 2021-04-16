@@ -52,8 +52,8 @@ async def amireallyalive(awake):
    ALIVE_MESSAGE += f"💠 𝙼𝚈 𝙱𝙾𝚂𝚂 💠: [{DEFAULTUSER}](tg://user?id={tag})\n\n"
    ALIVE_MESSAGE += "🔰 𝙶𝚁𝙾𝚄𝙿 🔰 : [SUPPORT](https://t.me/DARKLON_USERBOT_SUPPORT)\n\n"
    ALIVE_MESSAGE += "⚡ CHANNEL ⚡ : [CHANNEL](https://t.me/DARKLONXOP)\n\n"
-   ALIVE_MESSAGE += "🔥 OT GROUP 🔥 : [OT](https://t.me/DARKLON_OT\n\n"
-   ALIVE_MESSAGE += f"💠 [𝙳𝙴𝙿𝙻𝙾𝚈](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FHACKERBOTTELEGRAM%2FDARKLON-PACK&template=https%3A%2F%2Fgithub.com%2FHACKERBOTTELEGRAM%2FDARKLON-PACK) 𝚈𝙾𝚄𝚁 𝙾𝚆𝙽 𝙾𝙿 [{BOT}](https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP)  💠\n"   
+   ALIVE_MESSAGE += f"🔥 OT GROUP 🔥 : [OT](https://t.me/DARKLON_OT\n\n"
+   ALIVE_MESSAGE += "💠 [𝙳𝙴𝙿𝙻𝙾𝚈](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FHACKERBOTTELEGRAM%2FDARKLON-PACK&template=https%3A%2F%2Fgithub.com%2FHACKERBOTTELEGRAM%2FDARKLON-PACK) 𝚈𝙾𝚄𝚁 𝙾𝚆𝙽 𝙾𝙿 [{BOT}](https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP)  💠\n"   
    await awake.delete() 
    await borg.send_file(awake.chat_id, ALIVE_PHOTTO,caption=ALIVE_MESSAGE)
 
