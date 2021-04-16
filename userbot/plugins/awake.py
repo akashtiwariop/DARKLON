@@ -1,6 +1,6 @@
-CREDITS = @LEGENDX22 @PROBOYX @alain_champion
-Special thanks @alain_champion for this modified version
-if you kang then keep credits
+#CREDITS = @LEGENDX22 @PROBOYX @alain_champion
+#Special thanks @alain_champion for this modified version
+#if you kang then keep credits
 """
 import os
 import time
