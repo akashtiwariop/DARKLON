@@ -35,7 +35,7 @@ global ghanti
 @borg.on(sudo_cmd(pattern="awake ?(.*)", allow_sudo=True))
 async def amireallyalive(awake):
    """ #For .awake command, check if the bot is running.  """
-   tag = borg.uid
+   #tag = borg.uid
    uptm = await legend.get_readable_time((time.time() - StartTime))
    ALIVE_MESSAGE= f" ⚡️ {BOT} ⚡️  IS ON 🔥 FIRE 🔥"
    ALIVE_MESSAGE += "\n\n"
