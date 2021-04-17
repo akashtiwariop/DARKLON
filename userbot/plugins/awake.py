@@ -1,66 +1,64 @@
-"""
-(((((((((((((((((((((((@LEGENDX22)))))))))))))))))))))))))))
-(((((((((((((((((((((((@LEGENDX22)))))))))))))))))))))))))))
-(((((((((((((((((((((((@LEGENDX22)))))))))))))))))))))))))))
-(((((((((((((((((((((((@LEGENDX22)))))))))))))))))))))))))))
-MADE BY @LEGENDX22 dont kang this plugin
-CREDITS = @LEGENDX22 @PROBOYX @alain_champion
-Special thanks @alain_champion for this modified version
-if you kang then keep credits
-"""
-import os
-import time
+#MADE BY @GODBOYX
+#THANKS TO @LEGENDX22
+#TEAMLEGEND
 import asyncio
-from telethon import events
-from telethon.tl.types import ChannelParticipantsAdmins
-from userbot import ALIVE_NAME, DARKLONversion, StartTime, CMD_HELP
-from . import legend
-from userbot.legend import BOT
-from userbot.utils import admin_cmd, sudo_cmd
-from telethon import version
-from math import ceil
-import json
 import random
-import re
-from telethon import events, errors, custom
-import io
-from platform import python_version, uname
+from telethon import events
+from userbot.utils import admin_cmd
+from userbot import ALIVE_NAME
+from telethon.tl.types import ChannelParticipantsAdmins
+# 🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔🤔
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DARKLON USER"
 
-ALIVE_PHOTTO = Config.ALIVE_PHOTTO
-if ALIVE_PHOTTO is None:
-  ALIVE_PHOTTO = "https://telegra.ph/file/71e746fee50c4d83c2e56.png"
+edit_time = 5
+""" =======================CONSTANTS====================== """
+file1 = "https://telegra.ph/file/09eed9cdb0a03be132bd2.jpg"
+file2 = "https://telegra.ph/file/5c6554015d31075fd5eed.jpg"
+file3 = "https://telegra.ph/file/2a1012b4d4604117a5ea3.jpg"
+file4 = "https://telegra.ph/file/b6df6b2386397e03a8784.jpg"
+file5 = "https://telegra.ph/file/2b22e380a0eabb414d9b1.jpg"
+""" =======================CONSTANTS====================== """
+pm_caption = "🔥🔥 DARKLON ɨֆ օռʟɨռɛ..!! 🔥🔥\n\n"
+pm_caption += "⚔️⚔️ Yes Master, Am Alive And Systems Are Working Perfectly As It Should Be...⚔️⚔️\n\n"
+pm_caption += "◆◆◆About My System◆◆◆\n\n"
+pm_caption += "●●Telethon∆Version●● : 1.19.5\n'
+pm_caption += f"●●Darklon∆User●●>> {DEFAULTUSER}\n"
+pm_caption += "●●Darklon∆Version●● : 0.0.1\n"
+pm_caption += "●●Support∆Group●● : [GROUP](https://t.me/DARKLON_USERBOT_SUPPORT\n"
+pm_caption += "●●For Updates About Userbot●● : [CHANNEL](https://t.me/DARKLONXOP\n"
+@borg.on(admin_cmd(pattern=r"alive"))
 
+async def amireallyalive(yes):
+    chat = await yes.get_chat()
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DARKLON"
+    on = await borg.send_file(yes.chat_id, file=file1,caption=pm_caption)
 
-global ghanti
-        
-#make by LEGEND X bht mehnat lag gayi yrr but banhi gaya 😅           
-#@command(outgoing=True, pattern="^.awake$")
-@borg.on(admin_cmd(pattern=r"awake")) 
-@borg.on(sudo_cmd(pattern="awake ?(.*)", allow_sudo=True))
-async def amireallyalive(awake):
-   """ For .awake command, check if the bot is running.  """
-   tag = borg.uid
-   uptm = await legend.get_readable_time((time.time() - StartTime))
-   ALIVE_MESSAGE= f" ⚡️ {BOT} ⚡️  IS ON 🔥 FIRE 🔥"
-   ALIVE_MESSAGE += "\n\n"
-   ALIVE_MESSAGE += "💟 𝚂𝚈𝚂𝚃𝙴𝙼 𝚂𝚃𝙰𝚃𝚄𝚂 💟\n\n"
-   ALIVE_MESSAGE += "☎️ 𝚃𝙴𝙻𝙴𝚃𝙷𝙾𝙽 𝚅𝙴𝚁𝚂𝙸𝙾𝙽 ☎️ : 1.19.5\n\n"
-   ALIVE_MESSAGE += "🔶 DARKLON 𝚅𝙴𝚁𝚂𝙸𝙾𝙽 🔶 :   0.0.1\n\n"
-   ALIVE_MESSAGE += f"🔷 𝚄𝙿𝚃𝙸𝙼𝙴 🔷 : {uptm}\n\n"
-   ALIVE_MESSAGE += f"💠 𝙼𝚈 𝙱𝙾𝚂𝚂 💠: [{DEFAULTUSER}](tg://user?id={tag})\n\n"
-   ALIVE_MESSAGE += "🔰 𝙶𝚁𝙾𝚄𝙿 🔰 : [SUPPORT](https://t.me/DARKLON_USERBOT_SUPPORT)\n\n"
-   ALIVE_MESSAGE += "⚡ CHANNEL ⚡ : [CHANNEL](https://t.me/DARKLONXOP)\n\n"
-   ALIVE_MESSAGE += "⚡ OT ⚡ : [OT +SPAMMING](https://t.me/DARKLON_OT)\n\n"
-   ALIVE_MESSAGE += "💠 [𝙳𝙴𝙿𝙻𝙾𝚈](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FHACKERBOTTELEGRAM%2FDARKLON-PACK&template=https%3A%2F%2Fgithub.com%2FHACKERBOTTELEGRAM%2FDARKLON-PACK) 𝚈𝙾𝚄𝚁 𝙾𝚆𝙽 𝙾𝙿 [{BOT}](https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP)  💠\n"   
-   await awake.delete() 
-   await borg.send_file(awake.chat_id, ALIVE_PHOTTO,caption=ALIVE_MESSAGE)
+    await asyncio.sleep(edit_time)
+    ok = await borg.edit_message(yes.chat_id, on, file=file2) 
 
-CMD_HELP.update(
-    {
-        "awake": "Plugin : awake\
-    \n\nSyntax : .awake\
-    \nFunction : you can set here costom alive pic .set var ALIVE_PHOTTO (Telegraph link)"
-    }
-)
+    await asyncio.sleep(edit_time)
+    ok2 = await borg.edit_message(yes.chat_id, ok, file=file3)
+
+    await asyncio.sleep(edit_time)
+    ok3 = await borg.edit_message(yes.chat_id, ok2, file=file1)
+    
+    await asyncio.sleep(edit_time)
+    ok4 = await borg.edit_message(yes.chat_id, ok3, file=file3)
+    
+    await asyncio.sleep(edit_time)
+    ok5 = await borg.edit_message(yes.chat_id, ok4, file=file2)
+    
+    await asyncio.sleep(edit_time)
+    ok6 = await borg.edit_message(yes.chat_id, ok5, file=file1)
+    
+    await asyncio.sleep(edit_time)
+    ok7 = await borg.edit_message(yes.chat_id, ok6, file=file4)
+    
+    await asyncio.sleep(edit_time)
+    ok8 = await borg.edit_message(yes.chat_id, ok7, file=file5)
+
+    await alive.delete()
+    
+    """ For .alive command, check if the bot is running.  """
+    await borg.send_file(alive.chat_id, PM_IMG,caption=pm_caption)
+    await alive.delete()
