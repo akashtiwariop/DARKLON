@@ -19,7 +19,7 @@ jobs:
 
         with:
 
-          find: "𝗗𝗘𝗩𝗜𝗟"
+          find: "DEVIL"
 
           replace: "DARKLON"
 
