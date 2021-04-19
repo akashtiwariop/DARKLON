@@ -1,7 +1,6 @@
 #JNL
 from userbot import *
 from userbot.utils import *
-from userbot.cmdhelp import CmdHelp
 from userbot.uniborgConfig import Config
 from telethon.events import NewMessage
 from telethon.tl.custom import Dialog
