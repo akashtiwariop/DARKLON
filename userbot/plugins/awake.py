@@ -4,7 +4,7 @@ import time
 import asyncio
 from telethon import events
 from telethon.tl.types import ChannelParticipantsAdmins
-from userbot import ALIVE_NAME, devilversion, StartTime, CMD_HELP
+from userbot import ALIVE_NAME, DARKLONversion, StartTime, CMD_HELP
 from . import legend
 from userbot.legend import BOT
 from userbot.utils import admin_cmd, sudo_cmd
@@ -19,10 +19,10 @@ from platform import python_version, uname
 
 ALIVE_PHOTTO = Config.ALIVE_PHOTTO
 if ALIVE_PHOTTO is None:
-  ALIVE_PHOTTO = "https://telegra.ph/file/1a521001683a360053b32.jpg"
+  ALIVE_PHOTTO = ""
 
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "𝙳𝚎𝚟𝚒𝚕"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "DARKLON"
 
 global ghanti
         
@@ -34,15 +34,14 @@ async def amireallyalive(awake):
    """ For .awake command, check if the bot is running.  """
    tag = borg.uid
    uptm = await legend.get_readable_time((time.time() - StartTime))
-   ALIVE_MESSAGE= f" ⚡️ {BOT} ⚡️  IS ON 🔥 FIRE 🔥"
-   ALIVE_MESSAGE += "\n\n"
+   ALIVE_MESSAGE= f" 🔥🔥𝙳ARKLON υѕєявσт ιѕ ση ƒιяє🔥🔥"
    ALIVE_MESSAGE += "💟 𝚂𝚈𝚂𝚃𝙴𝙼 𝚂𝚃𝙰𝚃𝚄𝚂 💟\n\n"
-   ALIVE_MESSAGE += "☎️ 𝚃𝙴𝙻𝙴𝚃𝙷𝙾𝙽 𝚅𝙴𝚁𝚂𝙸𝙾𝙽 ☎️ : 1.19.5\n\n"
-   ALIVE_MESSAGE += "🔶 𝙳𝙴𝚅𝙸𝙻 𝚅𝙴𝚁𝚂𝙸𝙾𝙽 🔶 :   2.0\n\n"
-   ALIVE_MESSAGE += f"🔷 𝚄𝙿𝚃𝙸𝙼𝙴 🔷 : {uptm}\n\n"
+   ALIVE_MESSAGE += "☎️ †êlê†hðñ Vêr§ïðñ ☎️ : 1.19.5\n\n"
+   ALIVE_MESSAGE += "🔶 Đynamic฿Ø₮ VɆⱤ₴łØ₦ 🔶 :   2.0\n\n"
+   ALIVE_MESSAGE += f"🔷 UPTIME 🔷 : {uptm}\n\n"
    ALIVE_MESSAGE += f"💠 𝙼𝚈 𝙱𝙾𝚂𝚂 💠: [{DEFAULTUSER}](tg://user?id={tag})\n\n"
-   ALIVE_MESSAGE += "🔰 𝙶𝚁𝙾𝚄𝙿 🔰 : [SUPPORT](https://t.me/deviluserbot)\n\n"
-   ALIVE_MESSAGE += f"💠 [𝙳𝙴𝙿𝙻𝙾𝚈](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2Flucifeermorningstar%2FDevil&template=https%3A%2F%2Fgithub.com%2Flucifeermorningstar%2FDevil) 𝚈𝙾𝚄𝚁 𝙾𝚆𝙽 𝙾𝙿 [{BOT}](http://github.com/lucifeermorningstar/Devil)  💠\n"   
+   ALIVE_MESSAGE += "🔰 𝙶𝚁𝙾𝚄𝙿 🔰 : [SUPPORT](https://t.me/DARKLON_USERBOT_SUPPORT)\n\n"
+   ALIVE_MESSAGE += f"💠 [𝙳𝙴𝙿𝙻𝙾𝚈](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FHACKERBOTTELEGRAM%2FHACKERBOTOP&template=https%3A%2F%2Fgithub.com%2FHACKERBOTTELEGRAM%2FHACKERBOTOP) 𝚈𝙾𝚄𝚁 𝙾𝚆𝙽 𝙾𝙿 [{BOT}](http://github.com/HACKERBOTTELEGRAM/HACKERBOTOP)  💠\n"   
    await awake.delete() 
    await borg.send_file(awake.chat_id, ALIVE_PHOTTO,caption=ALIVE_MESSAGE)
 
