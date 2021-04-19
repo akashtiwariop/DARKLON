@@ -13,7 +13,7 @@
 
 
 
-MADE BY @DARKLONUSERBOTOWNER goto telegram and pm for contact
+MADE BY @AmanPandeyDeveloperIN goto telegram and pm for contact
 
 <details>
 <summary> special thanks </summary>
