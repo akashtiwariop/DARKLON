@@ -1,57 +1,55 @@
 #JNL
-from userbot import *
-from userbot.utils import *
-from userbot.uniborgConfig import Config
-from telethon.events import NewMessage
-from telethon.tl.custom import Dialog
-from telethon.tl.types import Channel, Chat, User
+import os
+import time
+import asyncio
+from telethon import events
+from telethon.tl.types import ChannelParticipantsAdmins
+from userbot import ALIVE_NAME, devilversion, StartTime, CMD_HELP
+from . import legend
+from userbot.legend import BOT
+from userbot.utils import admin_cmd, sudo_cmd
+from telethon import version
+from math import ceil
+import json
+import random
+import re
+from telethon import events, errors, custom
+import io
+from platform import python_version, uname
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "Darklon Userbot User"
+ALIVE_PHOTTO = Config.ALIVE_PHOTTO
+if ALIVE_PHOTTO is None:
+  ALIVE_PHOTTO = "https://telegra.ph/file/1a521001683a360053b32.jpg"
 
-PM_IMG = Config.ALIVE_PIC
 
-ludosudo = Config.SUDO_USERS
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "𝙳𝚎𝚟𝚒𝚕"
 
-if ludosudo:
-    sudou = "True"
-else:
-    sudou = "False"
+global ghanti
+        
+#make by LEGEND X bht mehnat lag gayi yrr but banhi gaya 😅           
+#@command(outgoing=True, pattern="^.awake$")
+@borg.on(admin_cmd(pattern=r"awake")) 
+@borg.on(sudo_cmd(pattern="awake ?(.*)", allow_sudo=True))
+async def amireallyalive(awake):
+   """ For .awake command, check if the bot is running.  """
+   tag = borg.uid
+   uptm = await legend.get_readable_time((time.time() - StartTime))
+   ALIVE_MESSAGE= f" ⚡️ {BOT} ⚡️  IS ON 🔥 FIRE 🔥"
+   ALIVE_MESSAGE += "\n\n"
+   ALIVE_MESSAGE += "💟 𝚂𝚈𝚂𝚃𝙴𝙼 𝚂𝚃𝙰𝚃𝚄𝚂 💟\n\n"
+   ALIVE_MESSAGE += "☎️ 𝚃𝙴𝙻𝙴𝚃𝙷𝙾𝙽 𝚅𝙴𝚁𝚂𝙸𝙾𝙽 ☎️ : 1.19.5\n\n"
+   ALIVE_MESSAGE += "🔶 𝙳𝙴𝚅𝙸𝙻 𝚅𝙴𝚁𝚂𝙸𝙾𝙽 🔶 :   2.0\n\n"
+   ALIVE_MESSAGE += f"🔷 𝚄𝙿𝚃𝙸𝙼𝙴 🔷 : {uptm}\n\n"
+   ALIVE_MESSAGE += f"💠 𝙼𝚈 𝙱𝙾𝚂𝚂 💠: [{DEFAULTUSER}](tg://user?id={tag})\n\n"
+   ALIVE_MESSAGE += "🔰 𝙶𝚁𝙾𝚄𝙿 🔰 : [SUPPORT](https://t.me/deviluserbot)\n\n"
+   ALIVE_MESSAGE += f"💠 [𝙳𝙴𝙿𝙻𝙾𝚈](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2Flucifeermorningstar%2FDevil&template=https%3A%2F%2Fgithub.com%2Flucifeermorningstar%2FDevil) 𝚈𝙾𝚄𝚁 𝙾𝚆𝙽 𝙾𝙿 [{BOT}](http://github.com/lucifeermorningstar/Devil)  💠\n"   
+   await awake.delete() 
+   await borg.send_file(awake.chat_id, ALIVE_PHOTTO,caption=ALIVE_MESSAGE)
 
-kraken = bot.uid
-
-pm_caption = "__**🔥🔥𝙳arklon υѕєявσт ιѕ ση ƒιяє🔥🔥**__\n\n"
-
-pm_caption += (
-    f"               __↼🄼🄰🅂🅃🄴🅁⇀__\n**『[{DEFAULTUSER}](tg://user?id={kraken})』**\n\n"
+CMD_HELP.update(
+    {
+        "awake": "Plugin : awake\
+    \n\nSyntax : .awake\
+    \nFunction : you can set here costom alive pic .set var ALIVE_PHOTTO (Telegraph link)"
+    }
 )
-
-pm_caption += "†êlê†hðñ Vêr§ïðñ: `1.15.0` \n"
-
-pm_caption += "ꉣꌦ꓄꒻ꄲꋊ ꒦ꏂꋪꇙ꒐ꄲꋊ:      `3.7.4` \n"
-
-pm_caption += f"DARKLON VERSION:  0.0.1__\n"
-
-pm_caption += f"sᴜᴅᴏ            : `{sudou}`\n"
-
-pm_caption += "ꇙ꒤ꉣꉣꄲꋪ꓄ ꍌꋪꄲ꒤ꉣ  : [ᴊᴏɪɴ](https://t.me/darklonuserbot)\n"
-
-pm_caption += "𝙲𝚛𝚎𝚊𝚝𝚘𝚛    : [Click Here](https://t.me/AmanApndeyDeveloperIN)\n\n"
-
-pm_caption += "    [✨REPO✨](https://github.com/HACKERBOTTELEGRAM/HACKERBOTOP) 🔹 [📜License📜]()"
-
-
-
-@bot.on(admin_cmd(outgoing=True, pattern="alive$"))
-@bot.on(sudo_cmd(pattern="alive$", allow_sudo=True))
-async def amireallyalive(alive):
-    await alive.get_chat()
-    await alive.delete()
-    """ For .alive command, check if the bot is running.  """
-    await borg.send_file(alive.chat_id, PM_IMG, caption=pm_caption)
-    await alive.delete()
-
-CmdHelp("alive").add_command(
-  'alive', None, 'Check weather the bot is alive or not'
-).add_command(
-  'devil', None, 'Check weather yhe bit is alive or not. In your custom Alive Pic and Alive Msg if in Heroku Vars'
-).add()
