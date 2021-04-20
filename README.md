@@ -17,7 +17,7 @@ MADE BY @AmanPandeyDeveloperIN goto telegram and pm for contact
 
 <details>
 <summary> special thanks </summary>
-<b>AmanPandey @AmanPandeyDeveloperIN A CODER AND HELPER AND FRIEND</b>
+<b>AmanPandey @AmanPandeyDeveloperIN A CODER </b>
 <h1>#TEAMLEGEND</h1>
 </details>
 
