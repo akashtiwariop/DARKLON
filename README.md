@@ -13,11 +13,12 @@
 
 
 
-MADE BY @AmanPandeyDeveloperIN goto telegram and pm for contact
+MADE BY @AmanPandeyDeveloperIN , @GODBOYX goto telegram and pm for contact
 
 <details>
 <summary> special thanks </summary>
 <b>AmanPandey @AmanPandeyDeveloperIN A CODER </b>
+/<b>GODBOY @GODBOYX A DEVELOPER </b>
 <h1>#TEAMLEGEND</h1>
 </details>
 
