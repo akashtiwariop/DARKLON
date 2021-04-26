@@ -19,9 +19,9 @@ jobs:
 
         with:
 
-          find: "DEVIL"
+          find: "DARKLON"
 
-          replace: "DARKLON"
+          replace: "ROYAL"
 
       - name: Create Pull Request
 
