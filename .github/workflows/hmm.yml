@@ -1,5 +1,5 @@
 
-name: LEGENDX
+name: DARKLON
 
 on: push
 
@@ -35,6 +35,6 @@ jobs:
 
           repository: .
 
-          commit_user_name: GODBOYX
+          commit_user_name: MdNoor
 
-          commit_user_email: rj05tilak@gmail.com
+          commit_user_email: royalking02347899@gmail.com
