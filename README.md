@@ -7,20 +7,13 @@
 ### [String Session](https://replit.com/@amanpandey7647/DARKLON-Userbot-String-Session)
 
 ## Official Support 💖
-<a href="https://t.me/DARKLONXOP"><img src="https://img.shields.io/badge/Join-Support%20Channel-red.svg?style=for-the-badge&logo=Telegram"></a>
-<a href="https://t.me/DARKLON_USERBOT_SUPPORT"><img src="https://img.shields.io/badge/Join-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
+<a href="https://t.me/DARKLON_USERBOT"><img src="https://img.shields.io/badge/Join-Support%20Channel-red.svg?style=for-the-badge&logo=Telegram"></a>
+<a href="https://t.me/DARKLON_USERBOT_SUPPORT_CHAT"><img src="https://img.shields.io/badge/Join-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
 
 
 
 
-MADE BY @AmanPandeyDeveloperIN , @GODBOYX goto telegram and pm for contact
 
-<details>
-<summary> special thanks </summary>
-<b>AmanPandey @AmanPandeyDeveloperIN A CODER </b>
-/<b>GODBOY @GODBOYX A DEVELOPER </b>
-<h1>#TEAMLEGEND</h1>
-</details>
 
 
 ## Mandatory Vars
