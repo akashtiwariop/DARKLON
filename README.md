@@ -1,4 +1,4 @@
-[![DARKLONE logo](https://telegra.ph/file/4678add619696c235a42a.jpg)]
+[![DARKLON logo](https://telegra.ph/file/945ee49474b76ce933bd4.jpg)]
 
 ## Deploy
 [![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FGODBOYX%2FDARKLON&template=https%3A%2F%2Fgithub.com%2FGODBOYX%2FDARKLON)
@@ -10,7 +10,8 @@
 <a href="https://t.me/DARKLON_USERBOT"><img src="https://img.shields.io/badge/Join-Support%20Channel-red.svg?style=for-the-badge&logo=Telegram"></a>
 <a href="https://t.me/DARKLON_USERBOT_SUPPORT_CHAT"><img src="https://img.shields.io/badge/Join-Support%20Group-blue.svg?style=for-the-badge&logo=Telegram"></a>
 
-
+##CREDITS
+<a href="https://t.me/GODBOYX"><img src="https://img.shields.io/badge/Message-Me%20Telegram-red.svg?style=for-the-badge&logo=Telegram"></a>
 
 
 
