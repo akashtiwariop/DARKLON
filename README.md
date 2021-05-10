@@ -14,7 +14,8 @@
 <a href="https://t.me/GODBOYX"><img src="https://img.shields.io/badge/Message-Me%20Telegram-red.svg?style=for-the-badge&logo=Telegram"></a>
 
 
-
+## COPYRIGHT
+TEAM HACKERBOTTELEGRAM AMAN APNDEY DARKLON USERBOT DONT REMOVE CREDITS OTHERWISE GET READY FOR GETTING GLOBAL BAN
 
 
 ## Mandatory Vars
