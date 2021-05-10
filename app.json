@@ -31,7 +31,7 @@
    "value": ""
   },
   "STRING_SESSION": {
-   "description": "Get this value by running python3 telesetup.py locally or https://telebot-sessionstring-generator.xditya.repl.run online.",
+   "description": "Get this value by going to https://replit.com/@amanpandey7647/DARKLON-Userbot-String-Session",
    "value": ""
   },  
   "CUSTOM_PMPERMIT": {
