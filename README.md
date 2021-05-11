@@ -1,9 +1,9 @@
 [![DARKLON logo](https://telegra.ph/file/945ee49474b76ce933bd4.jpg)]
 
 ## Deploy
-[![Deploy To Heroku](https://www.herokucdn.com/deploy/button.svg)](https://dashboard.heroku.com/new?button-url=https%3A%2F%2Fgithub.com%2FGODBOYX%2FDARKLON&template=https%3A%2F%2Fgithub.com%2FGODBOYX%2FDARKLON)
+<p align="center"><a href="https://heroku.com/deploy?template=https://github.com/HACKERBOTTELEGRAM/DARKLONX"> [<img align="center" alt="Heroku" width="52px" src="https://www.nicepng.com/png/full/223-2233246_heroku-logo-salesforce-heroku.png" />]
 
-# STRING SESSION:-
+## STRING SESSION:-
 ### [String Session](https://replit.com/@amanpandey7647/DARKLON-Userbot-String-Session)
 
 ## Official Support 💖
